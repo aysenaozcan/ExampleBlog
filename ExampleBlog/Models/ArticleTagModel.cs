@@ -2,7 +2,7 @@
 
 namespace ExampleBlog.Models
 {
-    public class ArticleTag
+    public class ArticleTagModel
     {
         [Key]
         public int Id { get; set; }

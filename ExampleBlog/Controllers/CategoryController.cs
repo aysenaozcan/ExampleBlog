@@ -7,19 +7,33 @@ namespace ExampleBlog.Controllers
     {
         public IActionResult Index()
         {
-            List<CategoryModel> categories = new List<CategoryModel>
+            using (BlogContext dc = new BlogContext()) 
             {
-               new CategoryModel { Id=1, Name="C#"},
-               new CategoryModel { Id = 1, Name = "Html" },
-               new CategoryModel { Id = 1, Name = "Css" }
-            };
+                var categories = dc.Categories.Where(c => true).ToList();
+                return View(categories);
+            }
 
-            return View(categories);
+               
         }
 
+        //HttpGet
         public IActionResult Create()
         {
             return View();
         }
+
+        [HttpPost]
+        public IActionResult Create(CategoryModel categoryModel)
+        {
+            //otomatik olarak dispose olması için using kullanılır
+            using (BlogContext dc = new BlogContext()) 
+            {
+                dc.Categories.Add(categoryModel);
+                dc.SaveChanges();
+            }
+
+            return RedirectToAction("Index");   
+        }
+
     }
 }
