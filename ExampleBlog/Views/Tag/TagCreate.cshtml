@@ -1,1 +1,6 @@
-﻿<h1>Create Tag</h1>
+﻿@model TagModel
+<h1>Add Tag </h1>
+<form method="post" action="TagCreate">
+    <input type="text" asp-for="Name" />
+    <button type="submit">Create</button>
+</form>

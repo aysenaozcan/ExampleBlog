@@ -35,5 +35,18 @@ namespace ExampleBlog.Controllers
             return RedirectToAction("Index");   
         }
 
+        [HttpPost]
+        public IActionResult Delete(int categoryId)
+        {
+            using (BlogContext dc = new BlogContext())
+            {
+                CategoryModel deletedCategory = dc.Categories.First(c => c.Id == categoryId);
+                dc.Categories.Remove(deletedCategory);
+                dc.SaveChanges();
+
+            }
+
+            return RedirectToAction("Index", "Category");
+        }
     }
 }

@@ -1,0 +1,64 @@
+﻿@*@model List<ArticleModel>
+<h1>Article List</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Title</th>
+            <th>Content</th>
+            <th>UserId</th>
+            <th>CategoryId</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.Title</td>
+                <td>@item.Content</td>
+                <td>@item.UserId</td>
+                <td>@item.CategoryId</td>
+                <td><button type="button" class="btn btn-warning">Delete</button></td>
+            </tr>
+        }
+
+    </tbody>
+
+
+</table>*@
+
+@model List<ArticleModel>
+@{
+    ViewData["Title"] = "Article List";
+}
+
+<h1>Article List</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Title</th>
+            <th>Content</th>
+            <th>UserId</th>
+            <th>CategoryId</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.Title</td>
+                <td>@item.Content</td>
+                <td>@item.UserId</td>
+                <td>@item.CategoryId</td>
+                <td><button type="button" class="btn btn-warning">Delete</button></td>
+            </tr>
+        }
+    </tbody>
+</table>

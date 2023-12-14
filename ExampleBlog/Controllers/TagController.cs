@@ -7,18 +7,41 @@ namespace ExampleBlog.Controllers
     {
         public IActionResult Index()
         {
-            List<TagModel> tags = new List<TagModel>
+            using (BlogContext dc = new BlogContext())
             {
-               new TagModel { Id=1, Name="C# ile geliştirme"},
-               new TagModel { Id=2, Name="Htmlde önemli şeyler"},
-               new TagModel { Id=3, Name="Css nedir?"}
-              
-            };
-            return View(tags);
+                var tags = dc.Tags.Where(c => true).ToList();
+                return View(tags);
+            }
         }
         public IActionResult TagCreate()
         {
             return View();
+        }
+
+        [HttpPost]
+        public IActionResult TagCreate(TagModel tagModel)
+        {
+            using (BlogContext dc = new BlogContext())
+            {
+                dc.Tags.Add(tagModel);
+                dc.SaveChanges();
+            }
+
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public IActionResult Delete(int tagId)
+        {
+            using (BlogContext dc = new BlogContext())
+            {
+                TagModel deletedTag = dc.Tags.First(c => c.Id == tagId);
+                dc.Tags.Remove(deletedTag);
+                dc.SaveChanges();
+
+            }
+
+            return RedirectToAction("Index", "Tag");
         }
 
     }

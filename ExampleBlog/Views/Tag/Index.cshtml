@@ -15,7 +15,12 @@
             <tr>
                 <td>@item.Id</td>
                 <td>@item.Name</td>   
-                <td><button type="button" class="btn btn-warning">Delete</button></td>
+                <td>
+                    <form method="post" action="/Tag/Delete">
+                        <input type="hidden" name="tagId" value="@item.Id" />
+                        <button type="submit" class="btn btn-warning">Delete</button>
+                    </form>
+                </td>
             </tr>
            
         }
