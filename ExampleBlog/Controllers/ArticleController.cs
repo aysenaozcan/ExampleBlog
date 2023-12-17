@@ -10,33 +10,33 @@ namespace ExampleBlog.Controllers
     public class ArticleController : Controller 
     {
 
-        private readonly ArticleService articleService;
+        private readonly ArticleService _articleService;
 
         public ArticleController(ArticleService articleService)
         {
-            articleService = articleService;
+            _articleService = articleService;
         }
 
-        public IActionResult Index() => View(articleService.GetAllArticles());
+        public IActionResult Index() => View(_articleService.GetAllArticles());
 
 
         public void ArticleCreate()
         {
-            articleService.CreateArticle();
+            _articleService.CreateArticle();
 
         }
 
         [HttpPost]
         public IActionResult ArticleCreate(ArticleModel articleModel)
         {
-            articleService.CreateArticle();
+            _articleService.CreateArticle();
             return RedirectToAction("Index");
         }
 
         [HttpPost]
         public IActionResult Delete(int articleId)
         {
-            articleService.Delete(articleId);
+            _articleService.Delete(articleId);
 
             return RedirectToAction("Index", "Article");
         }
