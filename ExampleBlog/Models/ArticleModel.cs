@@ -5,6 +5,8 @@ namespace ExampleBlog.Models
 {
     public class ArticleModel
     {
+        internal readonly object Categories;
+
         [Key]
         public int Id { get; set; }
         [Required]
