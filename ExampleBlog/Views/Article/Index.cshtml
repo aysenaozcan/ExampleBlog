@@ -1,40 +1,5 @@
-﻿@*@model List<ArticleModel>
-<h1>Article List</h1>
-
-<table class="table">
-    <thead>
-        <tr>
-            <th>Id</th>
-            <th>Title</th>
-            <th>Content</th>
-            <th>UserId</th>
-            <th>CategoryId</th>
-            <th>Delete</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>@item.Id</td>
-                <td>@item.Title</td>
-                <td>@item.Content</td>
-                <td>@item.UserId</td>
-                <td>@item.CategoryId</td>
-                <td><button type="button" class="btn btn-warning">Delete</button></td>
-            </tr>
-        }
-
-    </tbody>
-
-
-</table>*@
-
+﻿@using ExampleBlog.Models;
 @model List<ArticleModel>
-@{
-    ViewData["Title"] = "Article List";
-}
-
 <h1>Article List</h1>
 
 <table class="table">
@@ -43,8 +8,8 @@
             <th>Id</th>
             <th>Title</th>
             <th>Content</th>
-            <th>UserId</th>
-            <th>CategoryId</th>
+            <th>User Name</th>
+            <th>Category Name </th>
             <th>Delete</th>
         </tr>
     </thead>
@@ -55,10 +20,19 @@
                 <td>@item.Id</td>
                 <td>@item.Title</td>
                 <td>@item.Content</td>
-                <td>@item.UserId</td>
-                <td>@item.CategoryId</td>
-                <td><button type="button" class="btn btn-warning">Delete</button></td>
+                <td>@item.UserModel.Name</td>
+                <td>@item.CategoryModel.Name</td>
+                <td>
+                    <form method="post" action="/Article/Delete">
+                        <input type="hidden" name="articleId" value="@item.Id" />
+                        <button type="submit" class="btn btn-warning">Delete</button>
+                    </form>
+                </td>
             </tr>
         }
+
     </tbody>
+
+
 </table>
+

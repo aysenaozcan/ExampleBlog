@@ -1,6 +1,7 @@
 ﻿using ExampleBlog.Models;
 using Microsoft.AspNetCore.Mvc;
 
+
 namespace ExampleBlog.Controllers
 {
     public class CategoryController : Controller
@@ -12,8 +13,7 @@ namespace ExampleBlog.Controllers
                 var categories = dc.Categories.Where(c => true).ToList();
                 return View(categories);
             }
-
-               
+      
         }
 
         //HttpGet

@@ -1,7 +1,11 @@
+using ExampleBlog.Concrete;
+using ExampleBlog.Services.Interfaces;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddSingleton<IArticleService, ArticleService>();
 
 var app = builder.Build();
 

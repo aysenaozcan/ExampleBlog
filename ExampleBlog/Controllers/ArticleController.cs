@@ -1,35 +1,47 @@
-﻿using ExampleBlog.Models;
+﻿using ExampleBlog.Concrete;
+using ExampleBlog.Models;
+using ExampleBlog.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 
 namespace ExampleBlog.Controllers
 {
-    public class ArticleController : Controller
+    public class ArticleController : Controller 
     {
-        public IActionResult Index()
+
+        private readonly ArticleService articleService;
+
+        public ArticleController(ArticleService articleService)
         {
-            using (BlogContext dc = new BlogContext())
-            {
-                var articles = dc.Articles.Where(c => true).ToList();
-                return View(articles)
-                    //Include(i => i.Category);
-            }
+            articleService = articleService;
         }
-        public IActionResult ArticleCreate()
+
+        public IActionResult Index() => View(articleService.GetAllArticles());
+
+
+        public void ArticleCreate()
         {
-            return View();
+            articleService.CreateArticle();
+
         }
 
         [HttpPost]
         public IActionResult ArticleCreate(ArticleModel articleModel)
         {
-
-            using (BlogContext dc = new BlogContext())
-            {
-                dc.Articles.Add(articleModel);
-                dc.SaveChanges();
-            }
-
+            articleService.CreateArticle();
             return RedirectToAction("Index");
         }
+
+        [HttpPost]
+        public IActionResult Delete(int articleId)
+        {
+            articleService.Delete(articleId);
+
+            return RedirectToAction("Index", "Article");
+        }
+
     }
 }
+
+
