@@ -13,7 +13,7 @@ namespace ExampleBlog.Services.Interfaces
         /// </summary>
         /// <returns>All of the articles as list.</returns>
         List<ArticleModel> GetAllArticles();
-        void CreateArticle();
+        void CreateArticle(ArticleModel articleModel);
         public void Delete(int articleId);
     }
 }

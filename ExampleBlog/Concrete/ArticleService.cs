@@ -49,15 +49,9 @@ namespace ExampleBlog.Concrete
             }
         }
 
-        public List<ArticleModel> getAllArticles()
-        {
-            throw new NotImplementedException();
-        }
+      
 
-        public void CreateArticle()
-        {
-            throw new NotImplementedException();
-        }
+       
     }
 
 }
